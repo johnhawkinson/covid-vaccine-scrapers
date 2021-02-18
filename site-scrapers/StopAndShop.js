@@ -52,6 +52,9 @@ async function ScrapeWebsiteData(browser) {
                 ]),
                 page.click("#btnGo"),
             ]);
+	  console.log(searchResponse);
+	  console.log("tj");
+	  console.log(rest);
             const result = (await searchResponse.buffer()).toString();
             //if there's something available, log it with a unique name so we can check it out l8r g8r
             if (result.indexOf(noAppointmentMatchString) == -1) {
@@ -66,7 +69,7 @@ async function ScrapeWebsiteData(browser) {
                     "stopandshop-zip-" + loc.zip + "-date-" + today + ".png";
                 await page.screenshot({ path: filename });
             }
-            results[loc.zip] = result;
+          results[loc.zip] = result;
         }
     }
 
