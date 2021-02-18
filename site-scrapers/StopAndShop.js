@@ -31,6 +31,9 @@ async function ScrapeWebsiteData(browser) {
         }
     });
 
+  // Make sure we are not "stuck in line."
+  page.waitForSelector('#zip-input');
+
     const results = {};
 
     for (const loc of [...new Set(sites.StopAndShop.locations)]) {
