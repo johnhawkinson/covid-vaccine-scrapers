@@ -150,32 +150,32 @@ var baseline = {
       availability: {
 	'02/18/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 4,
+	  numberAvailableAppointments: 1,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=667'
 	},
 	'02/19/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 2,
+	  numberAvailableAppointments: 1,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=711'
 	},
 	'02/23/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 87,
+	  numberAvailableAppointments: 2,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=830'
 	},
 	'02/24/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 1065,
+	  numberAvailableAppointments: 2,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=892'
 	},
 	'02/25/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 1827,
+	  numberAvailableAppointments: 2,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=988'
 	},
 	'02/26/2021': {
 	  hasAvailability: true,
-	  numberAvailableAppointments: 1841,
+	  numberAvailableAppointments: 2,
 	  signUpLink: 'https://www.maimmunizations.org/client/registration?clinic_id=1091'
 	}
       },
