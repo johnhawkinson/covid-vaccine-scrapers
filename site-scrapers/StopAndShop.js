@@ -3,18 +3,18 @@ const sites = require("../data/sites.json");
 const noAppointmentMatchString = "no locations with available appointments";
 
 module.exports = async function GetAvailableAppointments(browser) {
-    console.log("Hannaford starting.");
+    console.log("StopAndShop starting.");
     const webData = await ScrapeWebsiteData(browser);
-    console.log("Hannaford done.");
-    return sites.Hannaford.locations.map((loc) => {
+    console.log("StopAndShop done.");
+    return sites.StopAndShop.locations.map((loc) => {
         const response = webData[loc.zip];
         return {
-            name: `Hannaford (${loc.city})`,
+            name: `Stop & Shop (${loc.city})`,
             hasAvailability: response.indexOf(noAppointmentMatchString) == -1,
             extraData: response.length
                 ? response.substring(1, response.length - 1)
                 : response, //take out extra quotes
-            signUpLink: sites.Hannaford.website,
+            signUpLink: sites.StopAndShop.website,
             ...loc,
         };
     });
@@ -22,7 +22,7 @@ module.exports = async function GetAvailableAppointments(browser) {
 
 async function ScrapeWebsiteData(browser) {
     const page = await browser.newPage();
-    await page.goto(sites.Hannaford.website);
+    await page.goto(sites.StopAndShop.website);
     await page.solveRecaptchas().then(({ solved }) => {
         if (solved.length) {
             return page.waitForNavigation();
@@ -33,7 +33,7 @@ async function ScrapeWebsiteData(browser) {
 
     const results = {};
 
-    for (const loc of [...new Set(sites.Hannaford.locations)]) {
+    for (const loc of [...new Set(sites.StopAndShop.locations)]) {
         if (!results[loc.zip]) {
             await page.evaluate(
                 () => (document.getElementById("zip-input").value = "")
@@ -42,7 +42,8 @@ async function ScrapeWebsiteData(browser) {
             const [searchResponse, ...rest] = await Promise.all([
                 Promise.race([
                     page.waitForResponse(
-                        "https://hannafordsched.rxtouch.com/rbssched/program/covid19/Patient/CheckZipCode"
+                        // TODO - this link doesn't work for me... fix? 
+                        "https://stopandshopsched.rxtouch.com/rbssched/program/covid19/Patient/CheckZipCode"
                     ),
                     page.waitForNavigation(),
                 ]),
@@ -59,7 +60,7 @@ async function ScrapeWebsiteData(browser) {
                     "-" +
                     today.getDate();
                 const filename =
-                    "hannaford-zip-" + loc.zip + "-date-" + today + ".png";
+                    "stopandshop-zip-" + loc.zip + "-date-" + today + ".png";
                 await page.screenshot({ path: filename });
             }
             results[loc.zip] = result;
